@@ -39,3 +39,7 @@ ENV/
 
 # Secrets
 secrets/
+
+# wandb
+notebooks/wandb/
+wandb
