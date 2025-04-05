@@ -72,6 +72,35 @@ jupyter notebook notebooks/preprocessing.ipynb
 jupyter notebook notebooks/fine_tuning.ipynb
 ```
 
+## Learning Curves and Training Progress
+
+### Training Results
+Below are the learning curve from our fine-tuning process:
+
+#### Loss Curve
+![Training and Validation Loss](images/loss.png)
+
+#### Grad Norm
+![Grad Norm](images/grad_norm.png)
+
+#### Analysis of Learning Curves
+The model training shows several interesting patterns:
+1. **Initial Phase**:
+   - Rapid decrease in training loss
+   - Validation loss follows training loss closely
+   - Quick improvement in target accuracy
+
+2. **Middle Phase**:
+   - Learning rate adjustments help maintain steady progress
+   - Gradual improvement in validation metrics
+   - Target accuracy continues to improve but at a slower rate
+
+3. **Final Phase**:
+   - Model converges to stable performance
+   - Validation loss stabilizes
+   - No signs of overfitting (training and validation losses remain close)
+
+The learning curves demonstrate that our LoRA fine-tuning approach successfully adapted the CodeGen model to FastAPI code completion tasks, achieving a significant reduction in validation loss while maintaining good generalization.
 
 ## Future Improvements
 1. Expand training data with more diverse FastAPI examples
