@@ -2,10 +2,6 @@
 
 This project implements code completion for FastAPI framework by fine-tuning the CodeGen-mono-small model using Low-Rank Adaptation (LoRA).
 
-## Project Overview
-The goal is to create a code completion model specifically trained on FastAPI patterns and conventions.
-We use CodeGen-mono-small (350M parameters) as our base model and fine-tune it for code completion tasks.
-
 ## Data Sources & References
 
 ### Primary Sources
@@ -41,7 +37,7 @@ We use CodeGen-mono-small (350M parameters) as our base model and fine-tune it f
 
 2. **Fine-tuning Approach**:
    - Parameter-Efficient Fine-Tuning using LoRA
-   - LoRA rank: 8
+   - LoRA rank: 4
    - LoRA alpha: 32
    - Target modules:
      - Token embeddings (wte)
@@ -49,34 +45,9 @@ We use CodeGen-mono-small (350M parameters) as our base model and fine-tune it f
      - Projection layers (c_proj)
      - Feed-forward layers (c_fc)
 
-## Setup and Usage
-
-### Requirements
-```bash
-pip install -r requirements.txt
-```
-
-### Training Process
-0. Web scraping:
-```bash
-jupyter notebook notebooks/data_collection.ipynb
-```
-
-1. Data preparation:
-```bash
-jupyter notebook notebooks/preprocessing.ipynb
-```
-
-2. Model fine-tuning:
-```bash
-jupyter notebook notebooks/fine_tuning.ipynb
-```
-
 ## Learning Curves and Training Progress
 
 ### Training Results
-Below are the learning curve from our fine-tuning process:
-
 #### Loss Curve
 ![Training and Validation Loss](images/loss.png)
 
