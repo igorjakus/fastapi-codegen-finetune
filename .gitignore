@@ -37,5 +37,5 @@ ENV/
 # DS_Store
 .DS_Store
 
-# Task description
-task.txt
+# Secrets
+secrets/
