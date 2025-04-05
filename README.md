@@ -39,11 +39,6 @@ This project implements code completion for FastAPI framework by fine-tuning the
    - Parameter-Efficient Fine-Tuning using LoRA
    - LoRA rank: 4
    - LoRA alpha: 32
-   - Target modules:
-     - Token embeddings (wte)
-     - Attention weights (c_attn)
-     - Projection layers (c_proj)
-     - Feed-forward layers (c_fc)
 
 ## Learning Curves and Training Progress
 
@@ -78,15 +73,3 @@ The learning curves demonstrate that our LoRA fine-tuning approach successfully 
 2. Experiment with different LoRA configurations
 3. Implement better evaluation metrics for code quality
 4. Experiment with QLoRA - unfortunately I had technical problems :-(
-
-## Project Structure
-```
-.
-├── data/
-│   ├── processed/      # Preprocessed datasets
-│   └── raw/           # Raw training data
-├── models/
-│   └── checkpoints/   # Model checkpoints
-├── notebooks/         # Jupyter notebooks
-└── requirements.txt   # Dependencies
-```
