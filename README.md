@@ -1,6 +1,6 @@
 # fastapi-codegen-finetune
 
-This project implements code completion for FastAPI framework by fine-tuning the CodeGen-mono-small model.
+This project implements code completion for FastAPI framework by fine-tuning the CodeGen-mono-small model using Low-Rank Adaptation (LoRA).
 
 ## Project Overview
 The goal is to create a code completion model specifically trained on FastAPI patterns and conventions.
@@ -21,3 +21,72 @@ We use CodeGen-mono-small (350M parameters) as our base model and fine-tune it f
 - [FastAPI](https://fastapi.tiangolo.com/)
   - Main project we're using for fine-tuning
   - Source of training data and patterns
+
+## Methodology
+
+### Data Collection and Preprocessing
+1. **Data Sources**: Collected FastAPI code examples from official FastAPI documentation
+
+2. **Data Processing Pipeline**:
+   - Tokenization using CodeGen tokenizer
+   - Context window size: 512 tokens
+   - Dataset split: 80% train, 10% validation, 10% test
+   - Total examples: ~2000 code snippets
+
+### Model Architecture and Training
+1. **Base Model**: 
+   - CodeGen-mono-small (350M parameters)
+   - Causal language model architecture
+   - Originally trained on mono-langual code data
+
+2. **Fine-tuning Approach**:
+   - Parameter-Efficient Fine-Tuning using LoRA
+   - LoRA rank: 8
+   - LoRA alpha: 32
+   - Target modules:
+     - Token embeddings (wte)
+     - Attention weights (c_attn)
+     - Projection layers (c_proj)
+     - Feed-forward layers (c_fc)
+
+## Setup and Usage
+
+### Requirements
+```bash
+pip install -r requirements.txt
+```
+
+### Training Process
+0. Web scraping:
+```bash
+jupyter notebook notebooks/data_collection.ipynb
+```
+
+1. Data preparation:
+```bash
+jupyter notebook notebooks/preprocessing.ipynb
+```
+
+2. Model fine-tuning:
+```bash
+jupyter notebook notebooks/fine_tuning.ipynb
+```
+
+
+## Future Improvements
+1. Expand training data with more diverse FastAPI examples
+2. Experiment with different LoRA configurations
+3. Implement better evaluation metrics for code quality
+4. Experiment with QLoRA - unfortunately I had technical problems :-(
+
+## Project Structure
+```
+.
+├── data/
+│   ├── processed/      # Preprocessed datasets
+│   └── raw/           # Raw training data
+├── models/
+│   └── checkpoints/   # Model checkpoints
+├── notebooks/         # Jupyter notebooks
+└── requirements.txt   # Dependencies
+```
