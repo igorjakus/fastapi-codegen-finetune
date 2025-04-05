@@ -2,51 +2,28 @@
 
 This project implements code completion for FastAPI framework by fine-tuning the CodeGen-mono-small model using Low-Rank Adaptation (LoRA).
 
+## Project Challenges and Limitations
+
+The project faced several practical constraints:
+- Limited computational resources (no dedicated GPU available)
+- Google Colab stability issues affecting training sessions
+- Time constraints due to academic commitments
+
+Despite these challenges, the project successfully demonstrated the effectiveness of parameter-efficient fine-tuning techniques for code completion tasks. The scope was intentionally focused to ensure meaningful results could be achieved within the available resources.
+
+## Data and Model Details
+- **Base Model**: CodeGen-mono-small (350M parameters)
+- **Fine-tuning**: LoRA (rank: 4, alpha: 32)
+- **Data**: ~2000 FastAPI code snippets from official documentation
+- **Split**: 80/10/10 (train/val/test)
+
 ## Data Sources & References
+- [Long Code Arena](https://arxiv.org/abs/2406.11612) - Benchmarking methodology
+- [CodeGen](https://github.com/salesforce/CodeGen) - Base model (350M parameters)
+- [FastAPI](https://fastapi.tiangolo.com/) - Source of training data
 
-### Primary Sources
-- [Long Code Arena: A New Era of Training and Evaluation for Code Large Language Models](https://arxiv.org/abs/2406.11612)
-  - Used as reference for benchmarking methodology and evaluation metrics
-
-### Model References
-- [CodeGen](https://github.com/salesforce/CodeGen)
-  - Base model: CodeGen-mono-small (350M parameters)
-  - Original paper: [CodeGen: An Open Large Language Model for Code with Multi-Turn Program Synthesis](https://arxiv.org/abs/2203.13474)
-
-### Framework References
-- [FastAPI](https://fastapi.tiangolo.com/)
-  - Main project we're using for fine-tuning
-  - Source of training data and patterns
-
-## Methodology
-
-### Data Collection and Preprocessing
-1. **Data Sources**: Collected FastAPI code examples from official FastAPI documentation
-
-2. **Data Processing Pipeline**:
-   - Tokenization using CodeGen tokenizer
-   - Context window size: 512 tokens
-   - Dataset split: 80% train, 10% validation, 10% test
-   - Total examples: ~2000 code snippets
-
-### Model Architecture and Training
-1. **Base Model**: 
-   - CodeGen-mono-small (350M parameters)
-   - Causal language model architecture
-   - Originally trained on mono-langual code data
-
-2. **Fine-tuning Approach**:
-   - Parameter-Efficient Fine-Tuning using LoRA
-   - LoRA rank: 4
-   - LoRA alpha: 32
-
-## Learning Curves and Training Progress
-
-### Training Results
-#### Loss Curve
+## Learning Curves
 ![Training and Validation Loss](images/loss.png)
-
-#### Grad Norm
 ![Grad Norm](images/grad_norm.png)
 
 #### Analysis of Learning Curves
